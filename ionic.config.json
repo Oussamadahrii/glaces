@@ -1,0 +1,7 @@
+{
+  "name": "Glaces",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
