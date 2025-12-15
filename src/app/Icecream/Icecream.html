@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Icecream</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+
+    <ion-row *ngIf="hasError">
+      <ion-col>
+        <p style="color:red; font-weight:bold">
+          Maximum 5 scoops allowed
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <app-flavours
+      *ngFor="let f of flavours"
+      [flavour]="f">
+    </app-flavours>
+
+    <ion-row>
+      <ion-radio-group [(ngModel)]="container">
+        <ion-radio value="cup">Cup</ion-radio>
+        <ion-radio value="cone">Cone</ion-radio>
+      </ion-radio-group>
+    </ion-row>
+
+    <ion-row>
+      <ion-checkbox [(ngModel)]="whipped">
+        Whipped cream
+      </ion-checkbox>
+    </ion-row>
+
+    <ion-row>
+      <ion-checkbox [(ngModel)]="nuts">
+        Nuts
+      </ion-checkbox>
+    </ion-row>
+
+    <ion-row>
+      <strong>Total: {{ total }} €</strong>
+    </ion-row>
+
+    <ion-row>
+      <ion-button
+        expand="block"
+        (click)="createIcecream()"
+        [disabled]="!canCreate()">
+        Create Icecream
+      </ion-button>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

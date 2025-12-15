@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ flavourName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-img
+    [src]="'/assets/' + flavourName.toLowerCase() + '.jpg'">
+  </ion-img>
+
+  <p><strong>{{ flavourName }}</strong> flavour is empty.</p>
+
+  <ion-input
+    label="Signature"
+    labelPlacement="stacked"
+    [(ngModel)]="signature">
+  </ion-input>
+
+  <!-- Order simple -->
+  <ion-button
+    expand="block"
+    (click)="orderSingle()"
+    [disabled]="signature === '' || showItems">
+    Order
+  </ion-button>
+
+  <!-- Toggle -->
+  <ion-button
+    expand="block"
+    fill="outline"
+    (click)="toggleItems()">
+    {{ showItems ? 'Collapse other items' : 'Check all items' }}
+  </ion-button>
+
+  <!-- Liste des stocks -->
+  <ion-list *ngIf="showItems">
+
+    <ion-item *ngFor="let f of flavours; let i = index">
+      <ion-checkbox
+        slot="start"
+        [(ngModel)]="selectedFlavours[i]"
+        [disabled]="f.name === flavourName">
+      </ion-checkbox>
+
+      <ion-label>
+        <strong>{{ f.name }}</strong>
+        <p>{{ f.quantity }} ml</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngFor="let e of extras; let i = index">
+      <ion-checkbox
+        slot="start"
+        [(ngModel)]="selectedExtras[i]">
+      </ion-checkbox>
+
+      <ion-label>
+        <strong>{{ e.name }}</strong>
+        <p>{{ e.quantity }} {{ e.unit }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      (click)="orderAll()"
+      [disabled]="!hasSelection()">
+      Order
+    </ion-button>
+
+  </ion-list>
+
+</ion-content>
