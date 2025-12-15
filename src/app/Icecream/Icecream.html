@@ -16,6 +16,12 @@
       </ion-col>
     </ion-row>
 
+    <ion-row>
+      <ion-col>
+        <h2 >Scoop flavours</h2>
+      </ion-col>
+    </ion-row>
+
     <app-flavours
       *ngFor="let f of flavours"
       [flavour]="f">
@@ -41,7 +47,7 @@
     </ion-row>
 
     <ion-row>
-      <strong>Total: {{ total }} €</strong>
+      <strong>Price : {{ total }} €</strong>
     </ion-row>
 
     <ion-row>
